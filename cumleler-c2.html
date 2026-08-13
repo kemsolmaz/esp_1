@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vamos — C2 · 100 Cümle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="grain-bg"></div>
+
+<nav>
+  <div class="brand">
+    <a href="c2.html" class="back-link">← <span class="mark" style="font-size:18px;">Vamos</span></a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menü">☰</button>
+  <div class="tabs" id="tabs">
+    <a class="tab-btn" href="c2.html">Seviye Sayfası</a>
+    <a class="tab-btn active" href="cumleler-c2.html">100 Cümle</a>
+  </div>
+  <div class="nav-right">
+    <span class="level-pill">C2</span>
+  </div>
+</nav>
+
+<main>
+  <section class="active">
+    <div style="padding:50px 0 10px;">
+      <div class="eyebrow-light">Anadil Seviyesi · Cümle Bankası</div>
+      <h1 class="display" style="font-size:36px; font-weight:600; max-width:26ch; line-height:1.15;">C2 · Edebi ve Ustalık Seviyesi Cümleler</h1>
+      <p style="color:var(--mist); max-width:60ch; margin-top:14px; font-size:15px; line-height:1.65;">
+        Günlük kullanımda en sık karşılaşılan 100 cümle — İspanyolca, İngilizce ve Türkçe karşılıklarıyla alt alta. Her cümlenin yanındaki 🔊 ikonuna tıklayarak doğru telaffuzu dinleyebilirsin.
+      </p>
+    </div>
+    <div class="divider-gold"></div>
+
+    <div class="sent-toolbar">
+      <input type="text" id="sentSearch" class="sent-search" placeholder="Cümle ara (İspanyolca, İngilizce veya Türkçe)...">
+      <div class="sent-count mono" id="sentCount">—</div>
+    </div>
+
+    <div class="panel" style="padding:6px 10px;">
+      <div class="sent-list" id="sentList"></div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/sentences-c2.js"></script>
+<script src="assets/sentences.js"></script>
+<script>initSentencesPage();</script>
+</body>
+</html>

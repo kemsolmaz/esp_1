@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vamos — C2 Seviyesi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="grain-bg"></div>
+
+<nav>
+  <div class="brand">
+    <a href="index.html" class="back-link">← <span class="mark" style="font-size:18px;">Vamos</span></a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menü">☰</button>
+  <div class="tabs" id="tabs">
+    <button class="tab-btn active" data-section="home">Seviye</button>
+    <button class="tab-btn" data-section="flashcards">Kelime Kartları</button>
+    <button class="tab-btn" data-section="matching">Eşleştirme</button>
+    <button class="tab-btn" data-section="puzzle">Bulmaca</button>
+    <button class="tab-btn" data-section="progress">İlerleme</button>
+    <a class="tab-btn" href="cumleler-c2.html">100 Cümle</a>
+  </div>
+  <div class="nav-right">
+    <span class="level-pill">C2</span>
+    <div class="student-chip" id="studentChip">Öğrenci seç ▾</div>
+  </div>
+</nav>
+
+<main>
+
+  <section id="home" class="active">
+    <div style="padding:50px 0 10px;">
+      <div class="eyebrow-light">Anadil Seviyesi · Seviye Sayfası</div>
+      <h1 class="display" style="font-size:40px; font-weight:600; max-width:20ch; line-height:1.1;">Zarafeti Tamamla</h1>
+      <p style="color:var(--mist); max-width:56ch; margin-top:16px; font-size:15.5px; line-height:1.65;">Anadil konuşurlarının bile özenle seçtiği, edebi ve nadir kelimeler. Amaç: dili tam anlamıyla ustalıkla, zarafetle kullanabilmek.</p>
+      <div style="margin-top:26px; display:flex; gap:12px;">
+        <button class="btn btn-gold" onclick="goTo('flashcards')">Kelime Kartlarına Başla</button>
+        <button class="btn btn-ghost-dark" onclick="goTo('progress')">İlerlemeni Gör</button>
+        <a class="btn btn-ghost-dark" href="cumleler-c2.html">100 Cümleyi Aç</a>
+      </div>
+    </div>
+    <div class="divider-gold"></div>
+    <div class="feature-row">
+      <div class="feature-card"><div class="num">01</div><h4>Kelime Kartları</h4><p>Bu seviyeye özel kelime dağarcığı, bilmediğin kelimeyi daha sık gösterir.</p></div>
+      <div class="feature-card"><div class="num">02</div><h4>Eşleştirme</h4><p>Süreye karşı kelime–anlam eşleştirmesi ile refleks kazan.</p></div>
+      <div class="feature-card"><div class="num">03</div><h4>Bulmaca</h4><p>Harfleri sürükleyip kelimeyi kurarak yazılışı pekiştir.</p></div>
+      <a class="feature-card" href="cumleler-c2.html" style="display:block; text-decoration:none;"><div class="num">04</div><h4>100 Cümle</h4><p>Günlük konuşmada geçen cümleleri İS/EN/TR ve sesli telaffuzla çalış.</p></a>
+    </div>
+  </section>
+
+  <section id="flashcards">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow-light">Modül 01 · C2</div>
+        <h2>Kelime Kartları</h2>
+      </div>
+      <div class="fc-progress mono" id="fcProgress">1 / 12</div>
+    </div>
+    <div class="panel">
+      <div class="fc-stage">
+        <div class="fc-card-wrap">
+          <div class="fc-card" id="fcCard" onclick="flipCard()">
+            <div class="fc-face fc-front">
+              <button class="fc-speak" onclick="speakCurrentCard(event)" aria-label="Telaffuz et">🔊</button>
+              <div>
+                <div class="w" id="fcWord">—</div>
+                <div class="pos" id="fcPos">—</div>
+              </div>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="w" id="fcMeaning">—</div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-example" id="fcExample" style="display:none;"></div>
+        <div class="fc-hint">Kartı çevirmek için tıkla, sonra bildiğini işaretle</div>
+        <div class="fc-actions">
+          <button class="btn btn-again" onclick="answerCard(false)">Tekrar Göster</button>
+          <button class="btn btn-know" onclick="answerCard(true)">Biliyorum</button>
+        </div>
+        <button class="btn btn-ghost-light" style="margin-top:4px; padding:8px 16px; font-size:12.5px;" onclick="shuffleDeck()">🔀 Kartları Karıştır</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="matching">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow-light">Modül 02 · C2</div>
+        <h2>Eşleştirme Oyunu</h2>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="match-bar">
+        <span>Süre: <span class="mono" id="matchTime">0s</span></span>
+        <span>Eşleşme: <span class="mono" id="matchScore">0/6</span></span>
+        <button class="btn btn-ghost-light" style="padding:6px 14px; font-size:12px;" onclick="startMatching()">Yeniden Başlat</button>
+      </div>
+      <div class="match-grid" id="matchGrid"></div>
+    </div>
+  </section>
+
+  <section id="puzzle">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow-light">Modül 03 · C2</div>
+        <h2>Kelime Bulmaca</h2>
+      </div>
+      <button class="btn btn-ghost-dark" style="padding:6px 14px; font-size:12px;" onclick="newPuzzle()">Yeni Kelime</button>
+    </div>
+    <div class="panel">
+      <div class="puzzle-hint" id="puzzleHint">İpucu: —</div>
+      <div class="puzzle-input" id="puzzleSlots"></div>
+      <div class="puzzle-word" id="puzzleLetters"></div>
+      <div class="puzzle-feedback" id="puzzleFeedback"></div>
+      <div style="text-align:center; margin-top:10px;">
+        <button class="btn btn-ghost-light" style="padding:8px 16px; font-size:13px;" onclick="clearPuzzle()">Temizle</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="progress">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow-light">Panel · C2</div>
+        <h2>İlerlemen</h2>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat"><div class="num" id="statKnown">0</div><div class="lbl">Bilinen Kelime</div></div>
+      <div class="stat"><div class="num" id="statMatch">0</div><div class="lbl">Eşleştirme Skoru</div></div>
+      <div class="stat"><div class="num" id="statPuzzle">0</div><div class="lbl">Çözülen Bulmaca</div></div>
+      <div class="stat"><div class="num" id="statStreak">0</div><div class="lbl">Günlük Seri 🔥</div></div>
+    </div>
+    <div class="panel" style="padding:22px 28px;">
+      <div class="section-head" style="margin-bottom:10px;">
+        <div class="eyebrow-dark">Seviye Tamamlama</div>
+        <div class="mono" id="levelPct" style="color:var(--teal); font-weight:600;">0%</div>
+      </div>
+      <div class="level-progress-track"><div class="level-progress-fill" id="levelBar" style="width:0%;"></div></div>
+    </div>
+    <div class="panel">
+      <div class="eyebrow-dark">Kelime Günlüğü</div>
+      <div class="word-log" id="wordLog"><span class="word-pill">Henüz kelime çalışılmadı</span></div>
+    </div>
+    <div class="panel" style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+      <div style="flex:1; min-width:220px;">
+        <div class="eyebrow-dark">Öğretmenle Paylaş</div>
+        <p style="font-size:12.5px; color:var(--ink-soft); margin-top:4px;">İlerleme bu tarayıcıda saklanır. Öğretmenine göstermek için dışa aktarıp gönderebilirsin.</p>
+      </div>
+      <button class="btn btn-ghost-light" style="padding:9px 16px; font-size:12.5px;" onclick="exportProgress()">⬇ Dışa Aktar</button>
+      <label class="btn btn-ghost-light" style="padding:9px 16px; font-size:12.5px; cursor:pointer;">
+        ⬆ İçe Aktar
+        <input type="file" accept="application/json" style="display:none;" onchange="importProgressFile(this)">
+      </label>
+    </div>
+  </section>
+
+</main>
+
+<footer>Vamos · <span class="mono">C2</span> seviyesi · özel ders öğrencileri için hazırlandı</footer>
+
+<script src="assets/vocab-c2.js"></script>
+<script src="assets/app.js"></script>
+<script>initLevelPage();</script>
+</body>
+</html>
